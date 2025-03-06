@@ -25,6 +25,7 @@ const swiftFormatLockwood = require("./params/swift-format-lockwood");
 // const swiftFormatOfficial = require("./params/swift-format-official");
 const swiftlintParams = require("./params/swiftlint");
 const tscParams = require("./params/tsc");
+const vueTscParams = require("./params/vue-tsc");
 const xoParams = require("./params/xo");
 
 const linterParams = [
@@ -47,6 +48,7 @@ const linterParams = [
 	rustfmtParams,
 	stylelintParams,
 	tscParams,
+	vueTscParams,
 	xoParams,
 ];
 if (process.platform === "linux") {
