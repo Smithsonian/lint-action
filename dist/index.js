@@ -7863,6 +7863,7 @@ const SwiftFormatLockwood = __nccwpck_require__(8983);
 const SwiftFormatOfficial = __nccwpck_require__(1828);
 const SwiftLint = __nccwpck_require__(1439);
 const TSC = __nccwpck_require__(7540);
+const VueTSC = __nccwpck_require__(4439);
 const XO = __nccwpck_require__(728);
 
 const linters = {
@@ -7880,6 +7881,7 @@ const linters = {
 	swiftlint: SwiftLint,
 	xo: XO,
 	tsc: TSC,
+	vue_tsc: VueTSC,
 
 	// Formatters (should be run after linters)
 	autopep8: Autopep8,
@@ -8986,6 +8988,10 @@ const { removeTrailingPeriod } = __nccwpck_require__(9321);
  * https://www.typescriptlang.org/docs/handbook/compiler-options.html
  */
 class TSC {
+	static get tscCommand() {
+		return "tsc";
+	}
+
 	static get name() {
 		return "TypeScript";
 	}
@@ -9001,10 +9007,10 @@ class TSC {
 			throw new Error("NPM is not installed");
 		}
 
-		// Verify that ESLint is installed
+		// Verify that tsc is installed
 		const commandPrefix = prefix || getNpmBinCommand(dir);
 		try {
-			run(`${commandPrefix} tsc -v`, { dir });
+			run(`${commandPrefix} ${this.tscCommand} -v`, { dir });
 		} catch (err) {
 			throw new Error(`${this.name} is not installed`);
 		}
@@ -9025,7 +9031,7 @@ class TSC {
 		}
 
 		const commandPrefix = prefix || getNpmBinCommand(dir);
-		return run(`${commandPrefix} tsc --noEmit --pretty false ${args}`, {
+		return run(`${commandPrefix} ${this.tscCommand} --noEmit --pretty false ${args}`, {
 			dir,
 			ignoreErrors: true,
 		});
@@ -9071,6 +9077,22 @@ class TSC {
 }
 
 module.exports = TSC;
+
+
+/***/ }),
+
+/***/ 4439:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const TSC = __nccwpck_require__(7540);
+
+class VueTSC extends TSC {
+	static get tscCommand() {
+		return "vue-tsc";
+	}
+}
+
+module.exports = VueTSC;
 
 
 /***/ }),
@@ -10512,7 +10534,7 @@ exports.quoteAll = quoteAll;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"lint-action","version":"2.3.0","description":"GitHub Action for detecting and fixing linting errors","repository":"github:wearerequired/lint-action","license":"MIT","private":true,"main":"./dist/index.js","scripts":{"test":"jest","lint":"eslint --max-warnings 0 \\"**/*.js\\"","lint:fix":"yarn lint --fix","format":"prettier --list-different \\"**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}\\"","format:fix":"yarn format --write","build":"ncc build ./src/index.js"},"dependencies":{"@actions/core":"^1.10.0","command-exists":"^1.2.9","glob":"^8.1.0","parse-diff":"^0.11.0","shescape":"^1.6.4"},"peerDependencies":{},"devDependencies":{"@samuelmeuli/eslint-config":"^6.0.0","@samuelmeuli/prettier-config":"^2.0.1","@vercel/ncc":"^0.36.0","eslint":"8.32.0","eslint-config-airbnb-base":"15.0.0","eslint-config-prettier":"^8.6.0","eslint-plugin-import":"^2.26.0","eslint-plugin-jsdoc":"^39.6.7","fs-extra":"^11.1.0","jest":"^29.3.1","prettier":"^2.8.3"},"eslintConfig":{"root":true,"extends":["@samuelmeuli/eslint-config","plugin:jsdoc/recommended"],"env":{"node":true,"jest":true},"settings":{"jsdoc":{"mode":"typescript"}},"rules":{"no-await-in-loop":"off","no-unused-vars":["error",{"args":"none","varsIgnorePattern":"^_"}],"jsdoc/check-indentation":"error","jsdoc/check-syntax":"error","jsdoc/newline-after-description":["error","never"],"jsdoc/require-description":"error","jsdoc/require-hyphen-before-param-description":"error","jsdoc/require-jsdoc":"off"}},"eslintIgnore":["node_modules/","test/linters/projects/","test/tmp/","dist/"],"jest":{"setupFiles":["./test/mock-actions-core.js"]},"prettier":"@samuelmeuli/prettier-config"}');
+module.exports = JSON.parse('{"name":"lint-action","version":"2.3.0","description":"GitHub Action for detecting and fixing linting errors","repository":"github:wearerequired/lint-action","license":"MIT","private":true,"main":"./dist/index.js","scripts":{"test":"jest","lint":"eslint --max-warnings 0 \\"**/*.js\\"","lint:fix":"yarn lint --fix","format":"prettier --list-different \\"**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}\\"","format:fix":"yarn format --write","build":"ncc build ./src/index.js"},"dependencies":{"@actions/core":"^1.10.0","command-exists":"^1.2.9","glob":"^8.1.0","parse-diff":"^0.11.0","shescape":"^1.6.4"},"peerDependencies":{},"devDependencies":{"@samuelmeuli/eslint-config":"^6.0.0","@samuelmeuli/prettier-config":"^2.0.1","@vercel/ncc":"^0.36.0","eslint":"8.32.0","eslint-config-airbnb-base":"15.0.0","eslint-config-prettier":"^8.6.0","eslint-plugin-import":"^2.26.0","eslint-plugin-jsdoc":"^39.6.7","fs-extra":"^11.1.0","jest":"^29.3.1","prettier":"^2.8.3"},"eslintConfig":{"root":true,"extends":["@samuelmeuli/eslint-config","plugin:jsdoc/recommended"],"env":{"node":true,"jest":true},"settings":{"jsdoc":{"mode":"typescript"}},"rules":{"no-await-in-loop":"off","no-unused-vars":["error",{"args":"none","varsIgnorePattern":"^_"}],"jsdoc/check-indentation":"error","jsdoc/check-syntax":"error","jsdoc/newline-after-description":["error","never"],"jsdoc/require-description":"error","jsdoc/require-hyphen-before-param-description":"error","jsdoc/require-jsdoc":"off"}},"eslintIgnore":["node_modules/","test/linters/projects/","test/tmp/","dist/"],"jest":{"setupFiles":["./test/mock-actions-core.js"]},"prettier":"@samuelmeuli/prettier-config","packageManager":"yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"}');
 
 /***/ })
 

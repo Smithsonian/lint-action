@@ -20,6 +20,7 @@ const SwiftFormatLockwood = require("./swift-format-lockwood");
 const SwiftFormatOfficial = require("./swift-format-official");
 const SwiftLint = require("./swiftlint");
 const TSC = require("./tsc");
+const VueTSC = require("./vue-tsc");
 const XO = require("./xo");
 
 const linters = {
@@ -37,6 +38,7 @@ const linters = {
 	swiftlint: SwiftLint,
 	xo: XO,
 	tsc: TSC,
+	vue_tsc: VueTSC,
 
 	// Formatters (should be run after linters)
 	autopep8: Autopep8,
