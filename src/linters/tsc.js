@@ -12,8 +12,8 @@ const { removeTrailingPeriod } = require("../utils/string");
  * https://www.typescriptlang.org/docs/handbook/compiler-options.html
  */
 class TSC {
-  static get tscCommand() {
-		return 'tsc';
+	static get tscCommand() {
+		return "tsc";
 	}
 
 	static get name() {
