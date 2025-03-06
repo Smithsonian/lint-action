@@ -31,7 +31,7 @@ class TSC {
 			throw new Error("NPM is not installed");
 		}
 
-		// Verify that ESLint is installed
+		// Verify that tsc is installed
 		const commandPrefix = prefix || getNpmBinCommand(dir);
 		try {
 			run(`${commandPrefix} ${this.tscCommand} -v`, { dir });
