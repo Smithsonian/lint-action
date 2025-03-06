@@ -77,6 +77,8 @@ jobs:
           yarn install
           cd ../tsc/
           yarn install
+          cd ../vue-tsc/
+          yarn install
           cd ../xo/
           yarn install
 
