@@ -12,6 +12,10 @@ const { removeTrailingPeriod } = require("../utils/string");
  * https://www.typescriptlang.org/docs/handbook/compiler-options.html
  */
 class TSC {
+  static get tscCommand() {
+		return 'tsc';
+	}
+
 	static get name() {
 		return "TypeScript";
 	}
@@ -30,7 +34,7 @@ class TSC {
 		// Verify that ESLint is installed
 		const commandPrefix = prefix || getNpmBinCommand(dir);
 		try {
-			run(`${commandPrefix} tsc -v`, { dir });
+			run(`${commandPrefix} ${this.tscCommand} -v`, { dir });
 		} catch (err) {
 			throw new Error(`${this.name} is not installed`);
 		}
@@ -51,7 +55,7 @@ class TSC {
 		}
 
 		const commandPrefix = prefix || getNpmBinCommand(dir);
-		return run(`${commandPrefix} tsc --noEmit --pretty false ${args}`, {
+		return run(`${commandPrefix} ${this.tscCommand} --noEmit --pretty false ${args}`, {
 			dir,
 			ignoreErrors: true,
 		});
