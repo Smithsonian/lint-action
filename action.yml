@@ -227,7 +227,7 @@ inputs:
   vue_tsc_args:
     description: Additional arguments to pass to the linter
     required: false
-    default: ""
+    default: "--build --force"
   vue_tsc_dir:
     description: Directory where the vue-tsc command should be run
     required: false
