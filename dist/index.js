@@ -9088,7 +9088,7 @@ const TSC = __nccwpck_require__(7540);
 
 class VueTSC extends TSC {
 	static get tscCommand() {
-		return "vue-tsc";
+		return "vue-tsc --build --force";
 	}
 }
 
