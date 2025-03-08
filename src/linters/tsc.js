@@ -16,6 +16,10 @@ class TSC {
 		return "tsc";
 	}
 
+	static get tscVersionCheck() {
+		return "tsc -v";
+	}
+
 	static get name() {
 		return "TypeScript";
 	}
@@ -34,7 +38,7 @@ class TSC {
 		// Verify that tsc is installed
 		const commandPrefix = prefix || getNpmBinCommand(dir);
 		try {
-			run(`${commandPrefix} ${this.tscCommand} -v`, { dir });
+			run(`${commandPrefix} ${this.tscVersionCheck}`, { dir });
 		} catch (err) {
 			throw new Error(`${this.name} is not installed`);
 		}

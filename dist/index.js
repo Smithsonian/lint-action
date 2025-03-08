@@ -8992,6 +8992,10 @@ class TSC {
 		return "tsc";
 	}
 
+	static get tscVersionCheck() {
+		return "tsc -v";
+	}
+
 	static get name() {
 		return "TypeScript";
 	}
@@ -9010,7 +9014,7 @@ class TSC {
 		// Verify that tsc is installed
 		const commandPrefix = prefix || getNpmBinCommand(dir);
 		try {
-			run(`${commandPrefix} ${this.tscCommand} -v`, { dir });
+			run(`${commandPrefix} ${this.tscVersionCheck}`, { dir });
 		} catch (err) {
 			throw new Error(`${this.name} is not installed`);
 		}
@@ -9089,6 +9093,10 @@ const TSC = __nccwpck_require__(7540);
 class VueTSC extends TSC {
 	static get tscCommand() {
 		return "vue-tsc --build --force";
+	}
+
+	static get tscVersionCheck() {
+		return "vue-tsc -v";
 	}
 }
 

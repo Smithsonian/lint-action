@@ -16,7 +16,7 @@ function getLintParams(dir) {
 	return {
 		// Expected output of the linting function
 		cmdOutput: {
-			status: 2,
+			status: 1,
 			stdoutParts: [stdoutFile1, stdoutFile2, stdoutFile3],
 			stdout: `${stdoutFile1}\n${stdoutFile2}\n${stdoutFile3}`,
 		},
